@@ -1,3 +1,3 @@
-export * from './graph'
-export * from './node'
-export * from './parents'
+export * from './graph';
+export * from './node';
+export * from './parents';
