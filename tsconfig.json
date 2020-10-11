@@ -17,7 +17,6 @@
     "noImplicitUseStrict": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "paths": {},
     "rootDir": ".",
     "baseUrl": "."
   },

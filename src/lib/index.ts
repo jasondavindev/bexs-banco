@@ -1,8 +1,6 @@
 import { MissingNodeError } from "./exception/missing_node_error";
-
-type Node = { [key: string]: number };
-type Graph = { [key: string]: Node };
-type Parents = { [key: string]: string };
+import { RouteNotFoundError } from "./exception/route_not_found_error";
+import { Node, Parents, Graph } from "../shared/types";
 
 export const getLowerCost = (costs: Node, processed: string[]) => {
   return Object.keys(costs).reduce((lowest, node) => {
@@ -20,7 +18,12 @@ export const findBestPath = (
   startNode: string,
   targetNode: string
 ) => {
-  const costs = Object.assign({ [targetNode]: Infinity }, graph[startNode]);
+  checkNodes(graph, startNode);
+
+  const costs: Node = Object.assign(
+    { [targetNode]: Infinity },
+    graph[startNode]
+  );
 
   const parents: Parents = { [targetNode]: null };
 
@@ -33,20 +36,13 @@ export const findBestPath = (
   let node = getLowerCost(costs, processed);
 
   while (node) {
-    let cost = costs[node];
-    let children = graph[node];
-
-    for (let n in children) {
-      let newCost = cost + children[n];
-      if (!costs[n] || costs[n] > newCost) {
-        costs[n] = newCost;
-        parents[n] = node;
-      }
-    }
-
+    const children = graph[node];
+    updateChildrenCosts(children, costs, parents, node);
     processed.push(node);
     node = getLowerCost(costs, processed);
   }
+
+  if (costs[targetNode] == Infinity) throw new RouteNotFoundError("Route not found");
 
   return {
     totalCost: costs[targetNode],
@@ -54,37 +50,42 @@ export const findBestPath = (
   };
 };
 
+export const updateChildrenCosts = (
+  children: Node,
+  costs: Node,
+  parents: Parents,
+  node: string
+) => {
+  if (!children) return;
+
+  const cost = costs[node];
+
+  Object.keys(children).forEach((child) => {
+    const newCost = cost + children[child];
+
+    if (!costs[child] || newCost < costs[child]) {
+      costs[child] = newCost;
+      parents[child] = node;
+    }
+  });
+};
+
 export const buildPrettyPath = (
   parents: Parents,
-  totalCost: number,
   targetNode: string
-) => {
-  let optimalPath = [targetNode];
+): string[] => {
+  let fullPath = [targetNode];
   let parent = parents[targetNode];
 
   while (parent) {
-    optimalPath.push(parent);
+    fullPath.push(parent);
     parent = parents[parent];
   }
 
-  optimalPath.reverse();
-
-  const results = {
-    distance: totalCost,
-    path: optimalPath,
-  };
-
-  return results;
+  return fullPath.reverse();
 };
 
-export const checkNodes = (
-  graph: Graph,
-  startNode: string,
-  targetNode: string
-) => {
+export const checkNodes = (graph: Graph, startNode: string) => {
   if (!Object.getOwnPropertyDescriptor(graph, startNode))
     throw new MissingNodeError("Missing start node");
-
-  if (!Object.getOwnPropertyDescriptor(graph, targetNode))
-    throw new MissingNodeError("Missing target node");
 };
