@@ -15,7 +15,7 @@ export const parseFileToGraph = (filePath: string): Promise<Graph> => {
   });
 };
 
-const updateGraph = (graph: Graph, row: string[]) => {
+export const updateGraph = (graph: Graph, row: string[]) => {
   const [parent, child, cost] = row;
 
   if (!Object.getOwnPropertyDescriptor(graph, parent)) {

@@ -1,0 +1,10 @@
+{
+  "testEnvironment": "node",
+  "testMatch": ["<rootDir>/test/**/*.spec.ts"],
+  "transform": {
+    "^.+\\.ts$": "ts-jest"
+  },
+  "moduleFileExtensions": ["ts", "js"],
+  "testPathIgnorePatterns": ["/node_modules/"],
+  "transformIgnorePatterns": ["node_modules/(?!(antd)/)"]
+}
