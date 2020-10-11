@@ -2,7 +2,7 @@ import prompt from 'prompt';
 import { promisify } from 'util';
 import { buildPrettyPath, findBestPath } from '../lib';
 import { parseFileToGraph } from '../shared/command/input_converter';
-import { getInputFile } from '../shared/command/command_input';
+import { getInputFile } from '../shared/command/cli';
 
 const promptGetAsync = promisify(prompt.get);
 

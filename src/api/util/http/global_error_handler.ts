@@ -3,9 +3,9 @@ import {
   ExpressErrorMiddlewareInterface,
   Middleware,
 } from 'routing-controllers';
-import { RouteExistsError } from '../route/exception/route_exists_error';
-import { ConflictException } from './http/exception/conflig_exception';
-import { InternalServerError } from './http/exception/internal_server_error';
+import { RouteExistsError } from '../../route/exception/route_exists_error';
+import { ConflictException } from './exception/conflict_exception';
+import { InternalServerError } from './exception/internal_server_error';
 
 @Middleware({ type: 'after' })
 export class GlobalErrorHandler implements ExpressErrorMiddlewareInterface {

@@ -3,9 +3,9 @@ import path from 'path';
 import 'reflect-metadata';
 import { createExpressServer } from 'routing-controllers';
 import Container from 'typedi';
-import { getInputFile } from '../shared/command/command_input';
+import { getInputFile } from '../shared/command/cli';
 import { GraphManagerService } from './route/service/graph_manager_service';
-import { GlobalErrorHandler } from './util/global_error_handler';
+import { GlobalErrorHandler } from './util/http/global_error_handler';
 
 dotenv.config({ path: path.resolve(__dirname, '..', '..', '.env') });
 

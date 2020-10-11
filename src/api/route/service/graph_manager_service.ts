@@ -1,20 +1,18 @@
-import { FileManagerService } from '../../util/files/service/file_manager_service';
+import { FileManager } from '../../util/files/file_manager_service';
 import Container, { Service } from 'typedi';
 import { Graph } from '../../../shared/types';
-import { updateGraph } from '../../../shared/command/input_converter';
 import { findBestPath, buildPrettyPath } from '../../../lib';
 import { RouteExistsError } from '../exception/route_exists_error';
+import { updateGraph } from '../../../shared/command/graphs';
 
 @Service()
 export class GraphManagerService {
   private mainGraph: Graph;
+  private routesFilePath: string;
 
-  constructor(private readonly fileManagerService: FileManagerService) {
-    this.fileManagerService = Container.get(FileManagerService);
-  }
-
-  async loadGraph(filepath: string) {
-    this.mainGraph = await this.fileManagerService.loadFile(filepath);
+  async loadGraph(routesFilePath: string) {
+    this.routesFilePath = routesFilePath;
+    this.mainGraph = await FileManager.loadFile(routesFilePath);
   }
 
   async addRoute(from: string, to: string, cost: number) {
@@ -23,7 +21,7 @@ export class GraphManagerService {
     if (this.checkRouteExists(from, to))
       throw new RouteExistsError('Route already exists');
 
-    await this.fileManagerService.writeRoute(row);
+    await FileManager.writeRoute(this.routesFilePath, row);
     updateGraph(this.mainGraph, [from, to, cost.toString()]);
 
     return this.graph;

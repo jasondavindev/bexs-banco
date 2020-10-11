@@ -2,6 +2,7 @@ import csvParse from 'csv-parse';
 import fs from 'fs';
 import path from 'path';
 import { Graph } from 'src/shared/types';
+import { updateGraph } from './graphs';
 
 export const parseFileToGraph = (filePath: string): Promise<Graph> => {
   const graph: Graph = {};
@@ -13,14 +14,4 @@ export const parseFileToGraph = (filePath: string): Promise<Graph> => {
       .on('end', () => resolve(graph))
       .on('error', (e) => reject(e));
   });
-};
-
-export const updateGraph = (graph: Graph, row: string[]) => {
-  const [parent, child, cost] = row;
-
-  if (!Object.getOwnPropertyDescriptor(graph, parent)) {
-    graph[parent] = {};
-  }
-
-  graph[parent][child] = Number(cost);
 };

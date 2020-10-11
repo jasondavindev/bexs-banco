@@ -1,5 +1,5 @@
 import { Graph } from '../../../src/shared/types';
-import { updateGraph } from '../../../src/shared/command/input_converter';
+import { updateGraph } from '../../../src/shared/command/graphs';
 
 describe('#updateGraph', () => {
   it('should update graph nodes', () => {
