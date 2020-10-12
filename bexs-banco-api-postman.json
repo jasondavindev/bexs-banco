@@ -6,7 +6,7 @@
   },
   "item": [
     {
-      "name": "Create Route",
+      "name": "Find best route",
       "request": {
         "method": "GET",
         "header": [],
@@ -20,7 +20,7 @@
       "response": []
     },
     {
-      "name": "Find best route",
+      "name": "Create Route",
       "request": {
         "method": "POST",
         "header": [],
