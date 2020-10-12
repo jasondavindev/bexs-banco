@@ -5,6 +5,7 @@
 - Node.js
 - Docker & Docker compose
 - Express.js (servidor HTTP)
+- Winston (gerenciador de logs)
 - Jest (testes)
 - Prettier (linter)
 - GitHub Actions
@@ -55,4 +56,5 @@ src
 ├── cli           # modulo de aplicação CLI
 ├── lib           # regra de negócio (algoritmo de grafos)
 └── shared        # pacotes compartilhados entre aplicação REST e CLI
+└── common        # pacotes auxiliares (log manager)
 ```
