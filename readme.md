@@ -41,7 +41,10 @@ make test
 ```
 
 ## Rotas
+<<<<<<< HEAD
 
+=======
+>>>>>>> ad941b4b62c37ae45e2c6db259e55bc656a3b7ec
 As rotas se encontram no arquivo `bexs-banco-api-postman.json`. Importe para o [Postman](https://www.postman.com/) e execute seus testes.
 
 ## Estrutura do projeto
