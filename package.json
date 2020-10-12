@@ -38,6 +38,7 @@
     "reflect-metadata": "^0.1.13",
     "routing-controllers": "^0.9.0-alpha.6",
     "ts-node": "^9.0.0",
-    "typedi": "^0.8.0"
+    "typedi": "^0.8.0",
+    "winston": "^3.3.3"
   }
 }
