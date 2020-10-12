@@ -1,18 +1,21 @@
-import { FileManager } from '../../util/files/file_manager_service';
-import Container, { Service } from 'typedi';
+import { FileManager } from '../../util/files/file_manager';
+import { Service } from 'typedi';
 import { Graph } from '../../../shared/types';
 import { findBestPath, buildPrettyPath } from '../../../lib';
 import { RouteExistsError } from '../exception/route_exists_error';
 import { updateGraph } from '../../../shared/command/graphs';
+
+type LoadFunction = (routesFilePath: string) => Promise<Graph>;
 
 @Service()
 export class GraphManagerService {
   private mainGraph: Graph;
   private routesFilePath: string;
 
-  async loadGraph(routesFilePath: string) {
+  async loadGraph(routesFilePath: string, loadFunction: LoadFunction) {
     this.routesFilePath = routesFilePath;
-    this.mainGraph = await FileManager.loadFile(routesFilePath);
+    this.setGraph(await loadFunction(routesFilePath));
+    return this.mainGraph;
   }
 
   async addRoute(from: string, to: string, cost: number) {
@@ -38,7 +41,12 @@ export class GraphManagerService {
     };
   }
 
-  private checkRouteExists(from: string, to: string) {
+  setGraph(graph: Graph) {
+    this.mainGraph = graph;
+    return this.mainGraph;
+  }
+
+  public checkRouteExists(from: string, to: string) {
     return (
       this.graph[from] && Object.getOwnPropertyDescriptor(this.graph[from], to)
     );

@@ -1,4 +1,4 @@
-import { Graph } from "../types";
+import { Graph } from '../types';
 
 export const updateGraph = (graph: Graph, row: string[]) => {
   const [parent, child, cost] = row;

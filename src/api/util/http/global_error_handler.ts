@@ -2,10 +2,12 @@ import { Request, Response } from 'express';
 import {
   ExpressErrorMiddlewareInterface,
   Middleware,
+  NotFoundError,
 } from 'routing-controllers';
 import { RouteExistsError } from '../../route/exception/route_exists_error';
 import { ConflictException } from './exception/conflict_exception';
 import { InternalServerError } from './exception/internal_server_error';
+import { NotFoundError as NotFoundException } from './exception/not_found_error';
 
 @Middleware({ type: 'after' })
 export class GlobalErrorHandler implements ExpressErrorMiddlewareInterface {
@@ -21,6 +23,10 @@ export class GlobalErrorHandler implements ExpressErrorMiddlewareInterface {
       return new ConflictException(error.message);
     }
 
-    return new InternalServerError(error.message);
+    if (error instanceof NotFoundError) {
+      return new NotFoundException('Route not found');
+    }
+
+    return new InternalServerError(error.stack);
   }
 }
