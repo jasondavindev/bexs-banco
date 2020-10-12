@@ -1,5 +1,13 @@
 # Bexs Banco API
 
+## Tecnologias
+
+- Node.js
+- Docker & Docker compose
+- Express.js (servidor HTTP)
+- Jest (testes)
+- Prettier (linter)
+
 ## Executando aplicação (com docker)
 
 Instale os pacotes necessários
@@ -33,6 +41,7 @@ make test
 ```
 
 ## Rotas
+
 As rotas se encontram no arquivo `bexs-banco-api-postman.json`. Importe para o [Postman](https://www.postman.com/) e execute seus testes.
 
 ## Estrutura do projeto

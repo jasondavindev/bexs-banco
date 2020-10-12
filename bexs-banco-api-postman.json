@@ -1,62 +1,47 @@
 {
-	"info": {
-		"_postman_id": "0b8398ea-64de-43eb-a1bb-42d2075c043a",
-		"name": "Bexs Banco API",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "Create Route",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:3000/api/v1/routes/gru/to/cdg",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"v1",
-						"routes",
-						"gru",
-						"to",
-						"cdg"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Find best route",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"from\": \"GRU\",\n    \"to\": \"CDG\",\n    \"cost\": 1\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3000/api/v1/routes",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"v1",
-						"routes"
-					]
-				}
-			},
-			"response": []
-		}
-	],
-	"protocolProfileBehavior": {}
+  "info": {
+    "_postman_id": "0b8398ea-64de-43eb-a1bb-42d2075c043a",
+    "name": "Bexs Banco API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Route",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "localhost:3000/api/v1/routes/gru/to/cdg",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "routes", "gru", "to", "cdg"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Find best route",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"from\": \"GRU\",\n    \"to\": \"CDG\",\n    \"cost\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "localhost:3000/api/v1/routes",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "routes"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "protocolProfileBehavior": {}
 }
