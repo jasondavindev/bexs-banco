@@ -27,6 +27,6 @@ export class GlobalErrorHandler implements ExpressErrorMiddlewareInterface {
       return new NotFoundException('Route not found');
     }
 
-    return new InternalServerError(error.stack);
+    return new InternalServerError(error.message);
   }
 }
