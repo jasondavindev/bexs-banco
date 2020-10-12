@@ -7,6 +7,7 @@
 - Express.js (servidor HTTP)
 - Jest (testes)
 - Prettier (linter)
+- GitHub Actions
 
 ## Executando aplicação (com docker)
 
