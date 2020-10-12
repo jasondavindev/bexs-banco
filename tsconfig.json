@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["es5", "ES6", "ES2017"],
+    "target": "ES2019",
+    "lib": ["es5", "ES6", "ES2017", "ESNext"],
     "module": "CommonJS",
     "moduleResolution": "node",
     "outDir": "dist",
@@ -21,5 +21,5 @@
     "baseUrl": "."
   },
   "exclude": ["node_modules", "dist"],
-  "include": ["src"]
+  "include": ["src", "test"]
 }

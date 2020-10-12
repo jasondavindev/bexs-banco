@@ -1,6 +1,6 @@
-import { MissingNodeError } from "./exception/missing_node_error";
-import { RouteNotFoundError } from "./exception/route_not_found_error";
-import { Node, Parents, Graph } from "../shared/types";
+import { MissingNodeError } from './exception/missing_node_error';
+import { RouteNotFoundError } from './exception/route_not_found_error';
+import { Node, Parents, Graph } from '../shared/types';
 
 export const getLowerCost = (costs: Node, processed: string[]) => {
   return Object.keys(costs).reduce((lowest, node) => {
@@ -42,7 +42,8 @@ export const findBestPath = (
     node = getLowerCost(costs, processed);
   }
 
-  if (costs[targetNode] == Infinity) throw new RouteNotFoundError("Route not found");
+  if (costs[targetNode] == Infinity)
+    throw new RouteNotFoundError('Route not found');
 
   return {
     totalCost: costs[targetNode],
@@ -87,5 +88,5 @@ export const buildPrettyPath = (
 
 export const checkNodes = (graph: Graph, startNode: string) => {
   if (!Object.getOwnPropertyDescriptor(graph, startNode))
-    throw new MissingNodeError("Missing start node");
+    throw new MissingNodeError('Missing start node');
 };
