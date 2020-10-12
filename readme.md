@@ -1,5 +1,14 @@
 # Bexs Banco API
 
+## Tecnologias
+
+- Node.js
+- Docker & Docker compose
+- Express.js (servidor HTTP)
+- Jest (testes)
+- Prettier (linter)
+- GitHub Actions
+
 ## Executando aplicação (com docker)
 
 Instale os pacotes necessários
